@@ -15,9 +15,10 @@ class User < ApplicationRecord
 
   has_many :revers_of_follows, class_name: "Follow", foreign_key: "followed_id", dependent: :destroy
   has_many :follows, class_name: "Follow", foreign_key: "follower_id", dependent: :destroy
+  
   has_many :followers, through: :revers_of_follows, source: :follower
   has_many :followings, through: :follows, source: :followed
-  
+
   def follow(user_id)
     follows.create(followed_id: user_id)
   end
