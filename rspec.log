@@ -1,0 +1,13 @@
+Failures:
+
+  1) [STEP2] ユーザログイン後のテスト ユーザ一覧画面のテスト 表示内容の確認 自分と他人のshowリンクがそれぞれ表示される
+     Failure/Error: expect(page).to have_link 'Show', href: user_path(user)
+       expected to find link "Show" with href "/users/2" but there were no matches
+     # ./spec/system/02_after_login_spec.rb:275:in `block (4 levels) in <main>'
+
+Finished in 51.43 seconds (files took 2.71 seconds to load)
+199 examples, 1 failure
+
+Failed examples:
+
+rspec ./spec/system/02_after_login_spec.rb:274 # [STEP2] ユーザログイン後のテスト ユーザ一覧画面のテスト 表示内容の確認 自分と他人のshowリンクがそれぞれ表示される
