@@ -1,13 +1,18 @@
 class SearchesController < ApplicationController
   before_action :authenticate_user!
-  
-  def serache
-    @range = params[:range]
-    
-    if @range == "User"
-      @users = User.looks(params[:searche], params[:word])
+
+  def search
+    @model = params["model"]
+    @content = params["content"]
+    @method = params["method"]
+
+    if @model == 'user'
+      @users = User.search_for(@content, @method)
+      render "/searches/search_result"
     else
-      @books = Book.looks(params[:searche], params[:word])
+      @books = Book.search_for(@content, @method)
+      render "/searches/search_result"
     end
   end
+
 end
