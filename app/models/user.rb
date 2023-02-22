@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   has_many :revers_of_follows, class_name: "Follow", foreign_key: "followed_id", dependent: :destroy
   has_many :follows, class_name: "Follow", foreign_key: "follower_id", dependent: :destroy
-  
+
   has_many :followers, through: :revers_of_follows, source: :follower
   has_many :followings, through: :follows, source: :followed
 
@@ -37,5 +37,19 @@ class User < ApplicationRecord
       profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     profile_image.variant(resize_to_limit: [100, 100]).processed
+  end
+
+  def self.looks(searche, word)
+    if search == "perfect_match"
+      @user = User.where("name LIKE?", "#{word}")
+    elsif search == "forword_match"
+      @user = User.where("name LIKE?", "#{word}%")
+    elsif search == "backword_match"
+      @user = User.where("name LIKE?", "%#{word}")
+    elsif search == "partial_match"
+      @user = User.where("name LIKE?", "%#{word}%")
+    else
+      @user = User.all
+    end
   end
 end
