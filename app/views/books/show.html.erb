@@ -47,6 +47,7 @@
         </td>
         <td><%= link_to @book.title, book_path(@book.id) %></td>
         <td><%= @book.body %></td>
+        <td class="comments-count">コメント数：<%= @book.post_comments.count %></td>
         <% if @book.user_id == current_user.id %>
         <td>
           <%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-sm btn-success" %>
@@ -58,6 +59,11 @@
         <% end %>
       </tr>
     </table>
-    <%= render 'books/comment', book: @book, post_comment: @post_comment %>
+    <div id="comments_area">
+      <%= render 'comments/post_comments', book: @book %>
+    </div>
+    <div class="comment_form">
+      <%= render 'comments/comment_form', book: @book, post_comment: @post_comment %>
+    </div>
   </div>
 </div>
