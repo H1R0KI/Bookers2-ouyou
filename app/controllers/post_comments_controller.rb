@@ -6,14 +6,12 @@ class PostCommentsController < ApplicationController
     @post_comment.user_id = current_user.id
     @post_comment.book_id = @book.id
     @post_comment.save
-    render :post_comments
   end
 
   def destroy
     @book = Book.find(params[:book_id])
     @post_comment = current_user.post_comments.find_by(book_id: @book.id)
     @post_comment.destroy
-    render :post_comments
   end
 
   private

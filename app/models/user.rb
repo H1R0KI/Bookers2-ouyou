@@ -18,6 +18,18 @@ class User < ApplicationRecord
 
   has_many :followers, through: :revers_of_follows, source: :follower
   has_many :followings, through: :follows, source: :followed
+  
+  has_many :user_rooms
+  has_many :chats
+  has_many :rooms, through: :user_rooms
+  
+  def self.guest
+    find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "guestuser"
+    end
+  end
+
 
   def follow(user_id)
     follows.create(followed_id: user_id)
