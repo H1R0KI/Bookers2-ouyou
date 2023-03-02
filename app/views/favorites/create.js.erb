@@ -1,2 +1,1 @@
-alert('いいね');
-$("#book_<%= @book.id %> .favorite-btn").html("<%= j(render 'favorites/favorites-btn', book: @book) %>");
+$("#book_<%= @book.id %> .favorites-btn").html("<%= j(render 'favorites/favorites-btn', book: @book) %>");

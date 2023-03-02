@@ -1,2 +1,1 @@
-alert('いいね解除');
-$("#favorite-btn<%= @book.id %>").html("<%= j(render 'favorites/favorites-btn', book: @book) %>");
+$("#book_<%= @book.id %> .favorites-btn").html("<%= j(render 'favorites/favorites-btn', book: @book) %>");
