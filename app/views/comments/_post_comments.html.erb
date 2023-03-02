@@ -11,7 +11,7 @@
       <td><%= post_comment.comment %></td>
       <% if current_user == post_comment_user %>
       <td class="comment-delete">
-        <%= link_to 'Destroy', book_post_comments_path(post_comment.book_id, post_comment.id), class: 'btn-sm btn-danger', method: :delete, remote: true %>
+        <%= link_to 'Destroy', book_post_comments_path(post_comment.book_id, post_comment.id), class: 'btn-sm btn-danger', method: :delete, local: true %>
       </td>
     <% end %>
     </tr>

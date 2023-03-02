@@ -11,11 +11,7 @@
   <% end %>
 </div>
 
-<div class="errors">
-  <%= render "layouts/errors", obj: @chat %>
-</div>
-
-<%= form_with model: @chat, data: {remote: true} do |f| %>
+<%= form_with model: @chat, class: "form", data: {remote: true} do |f| %>
   <%= f.text_field :message %>
   <%= f.hidden_field :room_id %>
 <% end %>

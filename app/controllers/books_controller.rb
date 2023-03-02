@@ -7,9 +7,7 @@ class BooksController < ApplicationController
       sort_by {|x|
         x.favorited_users.includes(:favorites).where(created_at: from...to).size
       }.reverse
-    @user = User.find(current_user.id)
     @book = Book.new
-    @books = Book.all
   end
 
   def create

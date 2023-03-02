@@ -1,5 +1,7 @@
 class PostCommentsController < ApplicationController
 
+  before_action :authenticate_user!
+
   def create
     @book = Book.find(params[:book_id])
     @post_comment = PostComment.new(post_comment_params)
@@ -10,8 +12,8 @@ class PostCommentsController < ApplicationController
 
   def destroy
     @book = Book.find(params[:book_id])
-    @post_comment = current_user.post_comments.find_by(book_id: @book.id)
-    @post_comment.destroy
+    post_comment = current_user.post_comments.find_by(book_id: @book.id)
+    post_comment.destroy
   end
 
   private
