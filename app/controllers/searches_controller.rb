@@ -6,7 +6,7 @@ class SearchesController < ApplicationController
     @content = params["content"]
     @method = params["method"]
 
-    if @model == 'user'
+    if @model == "user"
       @users = User.search_for(@content, @method)
       render "/searches/search_result"
     else
@@ -14,5 +14,4 @@ class SearchesController < ApplicationController
       render "/searches/search_result"
     end
   end
-
 end

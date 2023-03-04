@@ -1,12 +1,11 @@
 class FavoritesController < ApplicationController
-
   before_action :authenticate_user!
 
   def create
     @book = Book.find(params[:book_id])
     unless @book.favorited_by?(current_user)
-    favorite = @book.favorites.new(user_id: current_user.id)
-    favorite.save
+      favorite = @book.favorites.new(user_id: current_user.id)
+      favorite.save
     end
   end
 

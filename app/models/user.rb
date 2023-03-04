@@ -25,7 +25,7 @@ class User < ApplicationRecord
   has_many :view_counts, dependent: :destroy
 
   def self.guest
-    find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |user|
+    find_or_create_by!(name: "guestuser", email: "guest@example.com") do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "guestuser"
     end
@@ -46,21 +46,21 @@ class User < ApplicationRecord
 
   def get_profile_image(width, height)
     unless profile_image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpg')
-      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      file_path = Rails.root.join("app/assets/images/no_image.jpg")
+      profile_image.attach(io: File.open(file_path), filename: "default-image.jpg", content_type: "image/jpeg")
     end
     profile_image.variant(resize_to_limit: [100, 100]).processed
   end
 
   def self.search_for(content, method)
-    if method == 'perfect'
+    if method == "perfect"
       User.where(name: content)
-    elsif method == 'forward'
-      User.where('name LIKE ?', content + '%')
-    elsif method == 'backward'
-      User.where('name LiKE ?', '%' + content)
+    elsif method == "forward"
+      User.where("name LIKE ?", content + "%")
+    elsif method == "backward"
+      User.where("name LiKE ?", "%" + content)
     else
-      User.where('name LIKE ?', '%' + content + '%')
+      User.where("name LIKE ?", "%" + content + "%")
     end
   end
 end
