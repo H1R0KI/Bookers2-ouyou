@@ -3,6 +3,7 @@ class BooksController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
+    puts "作成したキー #{ENV['SECRET_KEY']}"
     to = Time.current.at_end_of_day
     from = (to - 6.day).at_beginning_of_day
     @books = Book.all.sort { |a, b|
