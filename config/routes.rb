@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   resources :chats, only: [:show, :create]
 
+  resources :groups, only: [:index, :show, :edit, :create, :update, :new, :show]
+
   get "search" => "searches#search"
 
   devise_scope :user do
